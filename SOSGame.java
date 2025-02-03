@@ -62,7 +62,7 @@ public class SOSGame extends JFrame
 		
 	}
 		
-	// create top panel and components for top section of game and add to panel
+	// create top panel and components for top section of game and add to top panel
 	private void createTopPanel() 
 	{
 		topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));	// sets top panel components in the center
@@ -91,7 +91,7 @@ public class SOSGame extends JFrame
 		setupBluePlayerPanel();															// displayed vertically and from top to bottom
 		
 		
-		// create red player panel
+		// create red player panel 
 		redPlayerPanel = new JPanel();
 		redPlayerPanel.setLayout(new BoxLayout(redPlayerPanel, BoxLayout.Y_AXIS));
 		setupRedPlayerPanel();		// allows for better organization for creating and adding components
@@ -113,7 +113,7 @@ public class SOSGame extends JFrame
 		bluePlayerLabel = new JLabel("Blue Player");
 		blueHuman = new JRadioButton("Human", true);	// automatically chooses this option
 		blueComputer = new JRadioButton("Computer");
-		bluePlayerS = new JRadioButton("S", true);		// automatically chooses this token
+		bluePlayerS = new JRadioButton("S", true);	// automatically chooses this token
 		bluePlayerO = new JRadioButton("O");
 				
 		// add active listener for radio buttons
@@ -141,13 +141,13 @@ public class SOSGame extends JFrame
 		bluePlayerPanel.add(bluePlayerO);
 	}
 		
-	// set up red player panel and create components and add them to panel
+	// set up red player panel and create components and add them to red player panel
 	private void setupRedPlayerPanel()
 	{
 		redPlayerLabel = new JLabel("Red Player");
-		redHuman = new JRadioButton("Human", true);		// automatically sets option for user
+		redHuman = new JRadioButton("Human", true);	// automatically sets option for user
 		redComputer = new JRadioButton("Computer");
-		redPlayerS = new JRadioButton("S", true);		// automatically sets token for user
+		redPlayerS = new JRadioButton("S", true);	// automatically sets token for user
 		redPlayerO = new JRadioButton("O");
 		
 		// add active listeners for the red player radio buttons
@@ -193,30 +193,30 @@ public class SOSGame extends JFrame
 		bottomPanel.add(recordGame);
 		bottomPanel.add(replayButton);
 		bottomPanel.add(newGameButton);
-		add(bottomPanel, BorderLayout.SOUTH);		// adding panel which is to be located at the bottom of window
+		add(bottomPanel, BorderLayout.SOUTH);	// adding panel which is to be located at the bottom of window
 	}
 	
 	// update grid based on user input for the board size and create grid to 
-	// be interactive using buttons
+	// be interactive using buttons for game
 	private void updateGrid()
 	{
 		gridPanel.removeAll(); 		// clears the previous grid layout
-		gridPanel.setLayout(new GridLayout(boardSize, boardSize));		// sets a new layout, rows and columns are the same size
+		gridPanel.setLayout(new GridLayout(boardSize, boardSize));	// sets a new layout, rows and columns are the same size
 		
 		// create interactive grid by adding buttons 
 		for (int i = 0; i < boardSize * boardSize; i++)		// loop for cell size 
 		{
 			JButton gridButton = new JButton();		// empty button for each cell to detect a token
-			gridButton.setPreferredSize(new Dimension(60, 60));		// set the size of the buttons/cells to be uniform
+			gridButton.setPreferredSize(new Dimension(60, 60));		// set the size of the buttons/cells to be uniform 60px
 			gridButton.addActionListener(new GridButtonListener());		// add active listener to detect user interaction
-			gridPanel.add(gridButton);		// adds button to the grid panel
+			gridPanel.add(gridButton);		// add button to the grid panel
 		}
 		
 		gridPanel.revalidate();		// update the grid layout after changes
-		gridPanel.repaint();		// set up the new grid or refresh the layout 
+		gridPanel.repaint();		// draw the new grid or refresh the layout 
 	}
 	
-	// private inner listener classes that handles the event when the
+	//private inner listener classes that handles the event when the
 	// user clicks the check box, inserts text, or clicks a button
 	
 	// listener class for the radio button components 
@@ -225,9 +225,9 @@ public class SOSGame extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			JRadioButton source = (JRadioButton) e.getSource();		// creating method to listen and get the radio button
+			JRadioButton source = (JRadioButton) e.getSource();		// creating method to get the radio button when clicked
 				
-			System.out.println("Radio button" + source.getText());		// after getting clicked, prints "radio button"
+			System.out.println("Radio button" + source.getText());		// after getting clicked, prints "radio button" to console
 		}
 	}
 	
@@ -239,11 +239,11 @@ public class SOSGame extends JFrame
 		{
 			if (e.getSource() == newGameButton)		// if user selects new game button
 			{
-				System.out.println("New Game");		// the system will print out "new game"
+				System.out.println("New Game");		// the console will print out "new game"
 			}
 			else if (e.getSource() == replayButton)		// otherwise, if user selects replay button
 			{
-				System.out.println("Replay");		// the system will print out "replay"
+				System.out.println("Replay");		// the console will print out "replay"
 			}
 				
 		}
@@ -278,14 +278,14 @@ public class SOSGame extends JFrame
 				else 
 				{
 					JOptionPane.showMessageDialog(null, 
-							"Please enter a number between 3 and 11");		// user must input number between 3 and 11
+							"Please enter a number between 3 and 11");	// user must input number between 3 and 11
 					boardSizeText.setText(String.valueOf(boardSize));	// reset the text field to current board size ensuring valid input
 				}
 			}
 			
-			catch (NumberFormatException ex)
+			catch (NumberFormatException exception)
 			{
-				JOptionPane.showMessageDialog(null, "Please enter a vaild number");		// user must input valid integer, not strings or characters
+				JOptionPane.showMessageDialog(null, "Please enter a vaild number");	// user must input valid integer, not strings or characters
 				boardSizeText.setText(String.valueOf(boardSize));
 			}
 		}		
@@ -297,7 +297,7 @@ public class SOSGame extends JFrame
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			JButton button = (JButton) e.getSource();	// gets the button selected
+			JButton button = (JButton) e.getSource();	// gets the button that is selected
 			System.out.println("Grid button");		// prints "Grid button" to console
 			
 		}
@@ -305,7 +305,7 @@ public class SOSGame extends JFrame
 	
 	public static void main(String[] args)
 	{
-		SwingUtilities.invokeLater(() -> new SOSGame());	// schedules game to start when Swing is ready
+		new SOSGame();		// main class executes game 
 	}
 
 }
